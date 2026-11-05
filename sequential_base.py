@@ -1,3 +1,6 @@
+##Sequential workflow for creating a Hinglish video script from raw text using LangGraph and ChatGroq
+
+
 import os 
 from typing import TypedDict
 
@@ -14,8 +17,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.7)
-
+llm = ChatGroq(
+    model="openai/gpt-oss-120b",
+    temperature=0,
+    max_retries=2
+)
 def editor_node(state :pipelinestate) -> dict:
     """Stage 1: Cleans up grammar, removes typos, and refines the tone."""
 
